@@ -45,7 +45,7 @@ const WML_CONFIG = path.resolve(WML, "src/links.json");
 
 // Iterate over selected packages
 Object.keys(selectedPackages).map(key => {
-  const LOCAL_PACK_LINK = path.resolve(process.cwd(), "./node_modules", key);
+  const LOCAL_PACK_LINK = path.resolve(__dirname, "./node_modules", key);
   let pathToCheck = LOCAL_PACK_LINK;
 
   // Scoped package?
