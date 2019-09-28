@@ -1,12 +1,18 @@
 {
   "name": "react-native-yarn-workspaces",
   "description": "Enables to work with react-native and yarn workspaces easily",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Asten Mies",
   "bin": {
     "rnw": "./rnw",
     "rnw-link": "./rnw-link"
   },
+  "keywords": [
+    "yarn",
+    "workspaces",
+    "react-native",
+    "lerna"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/astenmies/react-native-yarn-workspaces.git"

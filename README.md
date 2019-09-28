@@ -17,7 +17,7 @@ Your local packages should be specified in `dependencies` or `devDependencies`
 
 ```
 "scripts": {
-    "link": "rnw link ../packages/path-to-my-local-packages",
+    "postinstall": "rnw link ../packages/path-to-my-local-packages",
     "watch": "rnw watch"
 }
 "dependencies": {
@@ -25,10 +25,10 @@ Your local packages should be specified in `dependencies` or `devDependencies`
 }
 ```
 
-Link your local packages
+Link your local packages manually (or skip and install all with `yarn` or `lerna bootstrap`)
 
 ```
-yarn link
+yarn postinstall
 ```
 
 Watch for changes in your local packages
