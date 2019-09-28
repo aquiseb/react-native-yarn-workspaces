@@ -11,9 +11,7 @@ let args = [];
 if (inputArgs[0] == "link") {
   bin = path.join(__dirname, "rnw-link");
   args = inputArgs.slice(1)
-  console.log('\x1b[36m%s\x1b[0m', `Starting rnw link`);
 } else if(inputArgs[0] == "watch") {
-  console.log('\x1b[36m%s\x1b[0m', `Starting rnw watch`);
   bin = "wml"
   args = ["start"]
 } else {
@@ -22,6 +20,7 @@ if (inputArgs[0] == "link") {
 }
 
 const ls = spawn(bin, args);
+console.log('\x1b[36m%s\x1b[0m', `Rnw is watching`);
 
 ls.stdout.on("data", data => {
   console.log(`${data}`);
