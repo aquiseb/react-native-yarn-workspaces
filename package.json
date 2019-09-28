@@ -7,6 +7,11 @@
     "rnw": "./rnw",
     "rnw-link": "./rnw-link"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/astenmies/react-native-yarn-workspaces.git"
+  },
+  "homepage": "https://github.com/astenmies/react-native-yarn-workspaces#readme",
   "license": "MIT",
   "scripts": {
     "link": "node wml-setup.js ../packages"
