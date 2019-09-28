@@ -1,10 +1,12 @@
 {
   "name": "react-native-yarn-workspaces",
   "version": "1.0.0",
+  "author": "Asten Mies",
   "bin": {
-    "rn-workspaces-fixer": "./wml-setup.js"
+    "rnw": "./rnw",
+    "rnw-link": "./rnw-link"
   },
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "link": "node wml-setup.js ../packages"
   },
