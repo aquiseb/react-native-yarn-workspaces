@@ -22,8 +22,7 @@
   "scripts": {
     "link": "node wml-setup.js ../packages"
   },
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "wml": "^0.0.83"
   }
 }
