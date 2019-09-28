@@ -39,7 +39,7 @@ const selectedPackages = allPackages.reduce((acc, curr) => {
 }, {});
 
 // Use wml
-const WML_BIN = path.resolve(__dirname, "./wml"); // inside node_modules/.bin
+const WML_BIN = path.resolve(__dirname, "../.bin/wml"); // inside node_modules/.bin
 const WML = path.resolve(__dirname, "../wml"); // inside node_modules
 const WML_CONFIG = path.resolve(WML, "src/links.json");
 
