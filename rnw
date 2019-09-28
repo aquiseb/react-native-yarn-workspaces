@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+const path = require("path");
+const spawn = require("child_process").spawn;
+
+const inputArgs = process.argv.slice(2);
+
+let bin = "wml";
+let args = ["start"];
+
+console.log("inputArgs --", inputArgs);
+
+if (inputArgs[0] == "setup") {
+  console.log('\x1b[36m%s\x1b[0m', `Starting rnw setup`);
+  bin = path.join(__dirname, "rnw-setup");
+} else {
+  console.log('\x1b[36m%s\x1b[0m', `Starting rnw watch`);
+}
+
+const ls = spawn(bin, args);
+
+ls.stdout.on("data", data => {
+  console.log(`${data}`);
+});
+
+ls.stderr.on("data", data => {
+  console.error(`${data}`);
+});
+
+ls.on("close", code => {
+  console.log(`child process exited with code ${code}`);
+});

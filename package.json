@@ -1,0 +1,15 @@
+{
+  "name": "react-native-yarn-workspaces",
+  "version": "1.0.0",
+  "bin": {
+    "rn-workspaces-fixer": "./wml-setup.js"
+  },
+  "license": "ISC",
+  "scripts": {
+    "link": "node wml-setup.js ../packages"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "wml": "^0.0.83"
+  }
+}

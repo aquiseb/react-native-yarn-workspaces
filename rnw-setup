@@ -1,0 +1,81 @@
+#!/usr/bin/env node
+
+const path = require("path");
+const spawn = require("child_process").spawn;
+const fs = require("fs");
+
+// Get the package.json
+const packageJson = require(process.cwd(), "package.json");
+
+// Get the location of local packages
+const inputArgs = process.argv.slice(2);
+const PACKAGES_LOCATION = path.resolve(process.cwd(), inputArgs[0]);
+if (!fs.existsSync(PACKAGES_LOCATION)) {
+  console.error("Could not find", PACKAGES_LOCATION);
+  process.exit();
+}
+
+// Get all packages at specified location
+const allPackages = fs
+  .readdirSync(PACKAGES_LOCATION)
+  .filter(f => fs.statSync(path.join(PACKAGES_LOCATION, f, "package.json")))
+  .map(x => path.resolve(PACKAGES_LOCATION, x));
+
+// Get only packages that were specified in dependencies or devDependencies
+const selectedPackages = allPackages.reduce((acc, curr) => {
+  const packageName = require(path.resolve(curr, "package.json")).name;
+  if (
+    Object.keys(packageJson.dependencies || {})
+      .map(x => x)
+      .includes(packageName) ||
+    Object.keys(packageJson.devDependencies || {})
+      .map(x => x)
+      .includes(packageName)
+  ) {
+    acc[packageName] = curr;
+  }
+  return acc;
+}, {});
+
+// Use wml
+const WML_BIN = path.resolve(process.cwd(), "node_modules/.bin/wml");
+const WML = path.resolve(process.cwd(), "node_modules/wml");
+const WML_CONFIG = path.resolve(WML, "src/links.json");
+
+// Iterate over selected packages
+Object.keys(selectedPackages).map(key => {
+  // Scoped package?
+  if (key.includes("/")) {
+    const packageScope = key.split("/")[0];
+    // Write our file
+    if (!fs.existsSync(packageScope)) {
+      fs.mkdirSync(packageScope);
+    }
+  }
+
+  const LOCAL_PACK_LINK = path.resolve(__dirname, "./node_modules", key);
+
+  // Delete previous links.json file in order to create a fresh new one
+  if (fs.existsSync(WML_CONFIG)) fs.unlinkSync(WML_CONFIG);
+
+  const args = ["add", selectedPackages[key], LOCAL_PACK_LINK];
+  const ls = spawn(WML_BIN, args);
+
+  ls.stdout.on("data", data => {
+    console.log(`${data}`);
+  });
+
+  ls.stderr.on("data", data => {
+    ls.stdin.write("Y\n");
+    console.error(`${data}`);
+  });
+
+  ls.on("close", code => {
+    console.log(`child process exited with code ${code}`);
+  });
+
+  // Check that the linked package was created
+  if (fs.existsSync(LOCAL_PACK_LINK)) {
+    console.log("\x1b[36m%s\x1b[0m", `Successfully linked ${key}`);
+  }
+});
