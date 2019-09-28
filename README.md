@@ -37,6 +37,12 @@ Watch for changes in your local packages
 yarn watch
 ```
 
+If you need to flush one day
+
+```
+watchman watch-del-all
+```
+
 ## Recommended
 
 This bin creates a .watchmanconfig in each of your local packages. I recommend to also ignore `src` if you're building that package.
