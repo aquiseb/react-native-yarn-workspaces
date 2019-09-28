@@ -39,18 +39,18 @@ const selectedPackages = allPackages.reduce((acc, curr) => {
 }, {});
 
 // Use wml
-const WML_BIN = path.resolve(process.cwd(), "node_modules/.bin/wml");
-const WML = path.resolve(process.cwd(), "node_modules/wml");
+const WML_BIN = path.resolve(__dirname, "./wml"); // inside node_modules/.bin
+const WML = path.resolve(__dirname, "../wml"); // inside node_modules
 const WML_CONFIG = path.resolve(WML, "src/links.json");
 
 // Iterate over selected packages
 Object.keys(selectedPackages).map(key => {
-  const LOCAL_PACK_LINK = path.resolve(__dirname, "./node_modules", key);
+  const LOCAL_PACK_LINK = path.join(__dirname, "../" + key);
   let pathToCheck = LOCAL_PACK_LINK;
 
   // Scoped package?
   if (key.includes("/")) {
-    pathToCheck = path.resolve(process.cwd(), "node_modules", key.split("/")[0]);
+    pathToCheck = path.resolve(__dirname, "../" + key.split("/")[0]); // inside node_modules
 
     // Write our file
     if (!fs.existsSync(pathToCheck)) {

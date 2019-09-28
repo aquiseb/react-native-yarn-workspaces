@@ -18,7 +18,7 @@ Never hoist this package.
 
 ```
 "scripts": {
-    "setup": "rnw link ../packages/path-to-my-local-packages",
+    "postinstall": "rnw link ../packages/path-to-my-local-packages",
     "watch": "rnw watch"
 },
 "workspaces": {
@@ -34,10 +34,10 @@ Never hoist this package.
 ```
 
 
-Link your local packages by running this in your app
+Link your local packages manually (or skip and install all with `yarn` or `lerna bootstrap`)
 
 ```
-yarn setup
+yarn postinstall
 ```
 
 Watch for changes in your local packages
