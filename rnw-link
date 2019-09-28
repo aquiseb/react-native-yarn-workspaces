@@ -45,12 +45,12 @@ const WML_CONFIG = path.resolve(WML, "src/links.json");
 
 // Iterate over selected packages
 Object.keys(selectedPackages).map(key => {
-  const LOCAL_PACK_LINK = path.resolve(__dirname, "./node_modules", key);
+  const LOCAL_PACK_LINK = path.resolve(process.cwd(), "./node_modules", key);
   let pathToCheck = LOCAL_PACK_LINK;
 
   // Scoped package?
   if (key.includes("/")) {
-    pathToCheck = key.split("/")[0];
+    pathToCheck = path.resolve(process.cwd(), "node_modules", key.split("/")[0]);
 
     // Write our file
     if (!fs.existsSync(pathToCheck)) {
@@ -60,6 +60,7 @@ Object.keys(selectedPackages).map(key => {
 
   // Delete previous links.json file in order to create a fresh new one
   if (fs.existsSync(WML_CONFIG)) fs.unlinkSync(WML_CONFIG);
+
 
   const args = ["add", selectedPackages[key], LOCAL_PACK_LINK];
   const ls = spawn(WML_BIN, args);
