@@ -1,7 +1,7 @@
 {
   "name": "react-native-yarn-workspaces",
   "description": "Enables to work with react-native and yarn workspaces easily",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Asten Mies",
   "bin": {
     "rnw": "./rnw",
