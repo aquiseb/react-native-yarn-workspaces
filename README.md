@@ -13,22 +13,31 @@ yarn add -D react-native-yarn-workspaces
 ```
 
 Setup watchman by adding this to your *package.json*.
-Your local packages should be specified in `dependencies` or `devDependencies`
+Your local packages should be specified in `dependencies` or `devDependencies`.
+Never hoist this package.
 
 ```
 "scripts": {
-    "postinstall": "rnw link ../packages/path-to-my-local-packages",
+    "setup": "rnw link ../packages/path-to-my-local-packages",
     "watch": "rnw watch"
-}
+},
+"workspaces": {
+    "nohoist": [
+      ...
+      "react-native-yarn-workspaces",
+      "react-native-yarn-workspaces/**"
+    ]
+  },
 "dependencies": {
     "my-local-package": "1.0.0"
 }
 ```
 
-Link your local packages manually (or skip and install all with `yarn` or `lerna bootstrap`)
+
+Link your local packages by running this in your app
 
 ```
-yarn postinstall
+yarn setup
 ```
 
 Watch for changes in your local packages
