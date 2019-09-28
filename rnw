@@ -5,16 +5,20 @@ const spawn = require("child_process").spawn;
 
 const inputArgs = process.argv.slice(2);
 
-let bin = "wml";
-let args = ["start"];
+let bin = "";
+let args = [];
 
-console.log("inputArgs --", inputArgs);
-
-if (inputArgs[0] == "setup") {
-  console.log('\x1b[36m%s\x1b[0m', `Starting rnw setup`);
-  bin = path.join(__dirname, "rnw-setup");
-} else {
+if (inputArgs[0] == "link") {
+  bin = path.join(__dirname, "rnw-link");
+  args = inputArgs.slice(1)
+  console.log('\x1b[36m%s\x1b[0m', `Starting rnw link`);
+} else if(inputArgs[0] == "watch") {
   console.log('\x1b[36m%s\x1b[0m', `Starting rnw watch`);
+  bin = "wml"
+  args = ["start"]
+} else {
+  console.log('\x1b[31m%s\x1b[0m', 'Command does not exist')
+  process.exit()
 }
 
 const ls = spawn(bin, args);
