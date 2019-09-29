@@ -112,6 +112,8 @@ Your local packages should be specified in `dependencies` or `devDependencies`.
 Never hoist this package.
 
 ```
+"name": "app-mobile",
+"private": true,
 "scripts": {
     "postinstall": "rnw link ../packages",
     "watch": "rnw watch"
