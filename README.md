@@ -28,7 +28,7 @@ Let's assume that you have a project structure similar to this.
 
 This will define your yarn workspaces. You can include your apps in the workspaces like so.
 
-```
+```json
 "name": "myproject",
 "private": true,
 "workspaces": {
@@ -46,10 +46,10 @@ This will define your yarn workspaces. You can include your apps in the workspac
 
 This is your react-native app. Never hoist react-native-yarn-workspaces.
 
-```
+```json
 {
   "name": "app-mobile",
-  "private": true
+  "private": true,
   "scripts": {
     "postinstall": "rnw link ../packages",
     "watch": "rnw watch",
@@ -85,7 +85,7 @@ This is your react-native app. Never hoist react-native-yarn-workspaces.
 
 #### app-web/package.json
 
-```
+```json
 {
   "name": "app-web",
   "dependencies": {
@@ -104,14 +104,14 @@ There's nothing particular to mention here. Just that react, react-dom and react
 
 **In your mobile app:** Add react-native-yarn-workspaces to your mobile app dependencies.
 
-```
+```shell
 yarn add -D react-native-yarn-workspaces
 ```
 
 Your local packages should be specified in `dependencies` or `devDependencies`.
 Never hoist this package.
 
-```
+```json
 "name": "app-mobile",
 "private": true,
 "scripts": {
@@ -134,13 +134,13 @@ Never hoist this package.
 **In your mobile app:** Link your local packages manually
 Or skip and install all your deps with `yarn` or `lerna bootstrap` from one level up.
 
-```
+```shell
 yarn postinstall
 ```
 
 **In your mobile app:** Watch for the changes that happen in *packages/core* by running this in your mobile app.
 
-```
+```shell
 yarn watch
 ```
 
@@ -148,7 +148,7 @@ Of course, in order to have changes actually happening, you may be "watch buildi
 
 If you need to flush one day
 
-```
+```shell
 watchman watch-del-all
 ```
 
@@ -157,7 +157,7 @@ watchman watch-del-all
 This bin creates a .watchmanconfig in each of your local packages, for instance *packages/core/.watchmanconfig*.
 I recommend to also ignore `src` if you're building that package wit babel/webpack/rollup.
 
-```
+```json
 // .watchmanconfig
 {
   "ignore_dirs": [
