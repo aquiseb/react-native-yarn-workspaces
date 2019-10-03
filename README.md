@@ -4,6 +4,12 @@ This package offers an all-in-one solution to work with react-native toghether w
 
 As symlinks don't work with react-native, rnw wraps [wml](https://github.com/wix/wml) and configures it in an easy way for you to use.
 
+# Example app
+
+Here's a working example of this packages.
+
+[UNIVERSE](https://github.com/astenmies/universe)
+
 ## Prerequisite (skip if your workspaces are already setup)
 
 Let's assume that you have a project structure similar to this. But of course yours can be different. The only thing that matters is just to have separate packages handled by yarn workspaces.
