@@ -6,7 +6,7 @@ As symlinks don't work with react-native, rnw wraps [wml](https://github.com/wix
 
 ## Prerequisite (skip if your workspaces are already setup)
 
-Let's assume that you have a project structure similar to this.
+Let's assume that you have a project structure similar to this. But of course yours can be different. The only thing that's important is just to have separate packages handled by yarn workspaces.
 
 ```
 - myproject/
