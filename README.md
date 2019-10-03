@@ -4,7 +4,7 @@ This package offers an all-in-one solution to work with react-native toghether w
 
 As symlinks don't work with react-native, rnw wraps [wml](https://github.com/wix/wml) and configures it in an easy way for you to use.
 
-# Example app
+## Example app
 
 Here's a working example of this package.
 
