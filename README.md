@@ -6,7 +6,7 @@ As symlinks don't work with react-native, rnw wraps [wml](https://github.com/wix
 
 # Example app
 
-Here's a working example of this packages.
+Here's a working example of this package.
 
 [UNIVERSE](https://github.com/astenmies/universe)
 
